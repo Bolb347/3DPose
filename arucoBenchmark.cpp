@@ -2,6 +2,6 @@
 
 int main()
 {
-	Aruco ar;
+	CAruco ar;
 	ar.detectBoard();
 }

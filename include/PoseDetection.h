@@ -42,7 +42,6 @@ public:
 	void detect(std::vector<cv::Mat>& in_imgs, std::string const& in_className,
 	            uint16_t const& in_numberOfObjects, std::vector<ObjectPose>& in_objPose,
 	            bool in_displayResults);
-
 	/**
 	 * @brief Call function once if benchmark is supposed to be used
 	 * 

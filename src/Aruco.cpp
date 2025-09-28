@@ -1,14 +1,14 @@
 #include "Aruco.h"
 
-Aruco::Aruco()
+CAruco::CAruco()
 {
 }
 
-Aruco::~Aruco()
+CAruco::~CAruco()
 {
 }
 
-void Aruco::createArucoBoard()
+void CAruco::createArucoBoard()
 {
 	int borderBits = 1;
 
@@ -33,7 +33,7 @@ void Aruco::createArucoBoard()
 	cv::imwrite("aruco_board.jpg", boardImage);
 }
 
-void Aruco::detectBoard()
+void CAruco::detectBoard()
 {
 	cv::Mat depthImg;
 	Kinect2 kin2;

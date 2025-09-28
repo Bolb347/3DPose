@@ -1,26 +1,29 @@
 #pragma once
-#include <opencv2/core.hpp>
-#include <opencv2/aruco.hpp>
-#include <opencv2/highgui.hpp>
-#include <glm/gtx/string_cast.hpp>
 
 #include "defines.h"
 #include "Kinect2.h"
 #include "utility.h"
+#include <opencv2/aruco.hpp>
+#include <opencv2/opencv.hpp> // optional but recommended
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtx/quaternion.hpp>
+#include <glm/gtx/string_cast.hpp> // <-- needed for glm::to_string
+
 
 /**
  * @brief Class can create a benchmark dataset
  * 
  */
-class Aruco
+class CAruco
 {
 public:
 	/**
 	 * @brief Construct a new Aruco object
 	 * 
 	 */
-	Aruco();
-	~Aruco();
+	CAruco();
+	~CAruco();
 
 	/**
 	 * @brief Generates the aruco board image "aruco_board.jp"
