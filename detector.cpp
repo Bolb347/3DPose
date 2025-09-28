@@ -32,7 +32,7 @@ int main()
 		if (colorImg.empty())
 		{
 			std::cout << "End of Sequence" << std::endl;
-			// cv::waitKey(0);
+			cv::waitKey(0);
 			return 0;
 		}
 
