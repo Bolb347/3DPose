@@ -38,6 +38,8 @@ typedef class StereoSolver {
         cv::Mat img1, img2;
         *m_cam1stream >> img1;
         *m_cam2stream >> img2;
+        cv::cvtColor(img1, img1, cv::COLOR_RGB2GRAY);
+        cv::cvtColor(img2, img2, cv::COLOR_RGB2GRAY);
         timestamp = time(nullptr);
         m_stereoBM->compute(img1, img2, m_depthImg);
         m_depthImg.convertTo(m_depthImg, CV_32F, 1.0 / 16.0);
