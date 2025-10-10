@@ -46,14 +46,6 @@ typedef class StereoSolver {
         *m_cam1stream >> img1;
         *m_cam2stream >> img2;
 
-        if (img1.size().area() == 0 || img2.size().area() == 0) {
-            return;
-        }
-        
-        if (img1.size() != img2.size()) {
-            cv::resize(img2, img2, img1.size());
-        }
-
         // Convert to grayscale if needed
         if (img1.channels() == 3)
             cv::cvtColor(img1, img1, cv::COLOR_BGR2GRAY);

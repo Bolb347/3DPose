@@ -50,37 +50,47 @@ int main()
         stereoSolver->solve();
         depthImg = stereoSolver->m_depthImg;
 
-		cv::Mat depthFloat, validMask, depthFilled;
+		// --- Depth visualization (robust version) ---
+		cv::Mat depthFloat, validMask, depthClamped, depthNormalized, depthColor;
 
+		// Convert to float for safe math
 		depthImg.convertTo(depthFloat, CV_32F);
 
-		double minValidDepth = 0.0;
-		double maxValidDepth = 1500.0;
-		validMask = (depthFloat >= minValidDepth) & (depthFloat <= maxValidDepth);
+		// Create a mask of valid pixels (ignore 0, negative, NaN, or inf)
+		validMask = (depthFloat > 0) & (depthFloat < 5000); // adjust max range as needed
+
+		// Replace invalid pixels with NaN for better min/max detection
 		depthFloat.setTo(std::numeric_limits<float>::quiet_NaN(), ~validMask);
 
-		depthFilled = depthFloat.clone();
-		cv::medianBlur(depthFilled, depthFilled, 5);
-		cv::Mat kernel = cv::getStructuringElement(cv::MORPH_RECT, cv::Size(3,3));
-		cv::dilate(depthFilled, depthFilled, kernel);
-		depthFilled.copyTo(depthFloat, ~validMask);  // only fill invalid pixels
+		// Compute min/max only on valid values
+		double minVal, maxVal;
+		cv::minMaxLoc(depthFloat, &minVal, &maxVal, nullptr, nullptr, validMask);
 
-		cv::Mat depthClamped = depthFloat.clone();
-		depthClamped.setTo(minValidDepth, depthClamped < minValidDepth);
-		depthClamped.setTo(maxValidDepth, depthClamped > maxValidDepth);
+		// Guard against empty/invalid ranges
+		if (std::isnan(minVal) || std::isnan(maxVal) || minVal == maxVal)
+		{
+			std::cout << "Invalid depth frame (no valid data)" << std::endl;
+			cv::imshow("Depth (colored)", cv::Mat::zeros(depthImg.size(), CV_8UC3));
+			continue;
+		}
 
-		cv::Mat depthNormalized;
-		cv::normalize(depthClamped, depthNormalized, 0, 255, cv::NORM_MINMAX, CV_8U);
+		// Optional: clamp max depth for better visibility
+		double maxDisplayDepth = std::min(maxVal, 3000.0); // limit to 3m for visualization
 
-		cv::Mat depthGamma;
-		depthNormalized.convertTo(depthGamma, CV_32F, 1.0/255.0);
-		cv::pow(depthGamma, 0.5, depthGamma);  // gamma < 1 brightens mid-range
-		depthGamma.convertTo(depthNormalized, CV_8U, 255.0);
+		// Clamp values and normalize
+		depthClamped = depthFloat.clone();
+		depthClamped.setTo(maxDisplayDepth, depthFloat > maxDisplayDepth);
+		cv::normalize(depthClamped, depthNormalized, 0, 255, cv::NORM_MINMAX, CV_8U, validMask);
 
-		cv::Mat depthColor;
+		// Invert so near = red, far = blue
 		cv::applyColorMap(255 - depthNormalized, depthColor, cv::COLORMAP_JET);
+
+		// Fill invalid areas with black for clarity
+		depthColor.setTo(cv::Scalar(0, 0, 0), ~validMask);
+
 		cv::imshow("Depth (colored)", depthColor);
-		cv::waitKey(10);
+
+		cv::waitKey(1);
 		continue;
 
 		imgs.push_back(colorImg);
