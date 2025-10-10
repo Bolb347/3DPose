@@ -90,6 +90,10 @@ foreach(target IN ITEMS Detector Template_Generator Arcuo_Benchmark Main)
     )
 endforeach()
 
+set(CMAKE_BUILD_TYPE Debug)
+set(CMAKE_CXX_FLAGS_DEBUG "-g3 -O0")
+set(CMAKE_C_FLAGS_DEBUG "-g3 -O0")
+
 #---------------------------------------------
 # Optional: CPack
 #---------------------------------------------

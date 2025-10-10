@@ -6,7 +6,7 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I/Users/mihaipopescu/Desktop/LINE-MOD/include -I/Users/mihaipopescu/Desktop/LINE-MOD/ext/ntcore -I/Users/mihaipopescu/Desktop/LINE-MOD/ext/wpi -I/opt/homebrew/Cellar/sdl2/2.32.10/include -isystem /opt/homebrew/include -isystem /opt/homebrew/Cellar/sdl2/2.32.10/include/SDL2 -isystem /usr/local/include/opencv4 -iframework /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks
 
-CXX_FLAGSarm64 = -O3 -DNDEBUG -std=gnu++20 -arch arm64   -D GLM_ENABLE_EXPERIMENTAL=TRUE
+CXX_FLAGSarm64 = -g3 -O0 -std=gnu++20 -arch arm64   -D GLM_ENABLE_EXPERIMENTAL=TRUE
 
-CXX_FLAGS = -O3 -DNDEBUG -std=gnu++20 -arch arm64   -D GLM_ENABLE_EXPERIMENTAL=TRUE
+CXX_FLAGS = -g3 -O0 -std=gnu++20 -arch arm64   -D GLM_ENABLE_EXPERIMENTAL=TRUE
 

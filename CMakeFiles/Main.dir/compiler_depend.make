@@ -964,7 +964,7 @@ CMakeFiles/Main.dir/main.cpp.o: main.cpp \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include/stdbool.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include/stddef.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include/stdint.h \
-  ext/ntcore/networktables/DoubleArrayTopic.h \
+  ext/ntcore/networktables/DoubleTopic.h \
   ext/ntcore/networktables/NetworkTable.h \
   ext/ntcore/networktables/NetworkTableEntry.h \
   ext/ntcore/networktables/NetworkTableInstance.h \
@@ -18324,8 +18324,6 @@ ext/ntcore/networktables/NetworkTableInstance.h:
 
 ext/ntcore/networktables/NetworkTable.h:
 
-ext/ntcore/networktables/DoubleArrayTopic.h:
-
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include/stdint.h:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include/stddef.h:
@@ -20331,6 +20329,8 @@ include/OpenglRender.h:
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/pstl_replace.h:
 
 include/Stereo.h:
+
+ext/ntcore/networktables/DoubleTopic.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__memory/ranges_uninitialized_algorithms.h:
 
